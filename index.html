@@ -1,11 +1,52 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>index</title>
-</head>
-<body>
-  <p>oi mundo</p>
-</body>
+<!DOCTYPE html>
+<html itemscope itemtype="https://schema.org/WebSite" style="font-family: Arial, sans-serif; margin: 0; padding: 0;">
+  <head>
+    <meta charset="UTF-8">
+    <!-- Nome do site -->
+    <title itemprop="name" style="font-size: 24px; color: #333;">Nome do Site</title>
+    <!-- Descrição do site -->
+    <meta itemprop="description" content="Esta é a descrição do site.">
+    <!-- URL canônica -->
+    <link itemprop="url" href="https://www.exemplo.com">
+    <!-- Bloco JSON-LD para reforçar a marcação -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "url": "https://www.exemplo.com",
+        "name": "Nome do Site",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.exemplo.com/busca?query={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body style="margin: 0; padding: 20px; background-color: #f9f9f9;">
+    <header style="background-color: #4CAF50; padding: 20px; text-align: center;">
+      <h1 itemprop="name" style="margin: 0; color: #fff;">Nome do Site</h1>
+    </header>
+    <nav style="margin: 20px 0; text-align: center;">
+      <ul style="list-style: none; margin: 0; padding: 0;">
+        <li style="display: inline-block; margin-right: 15px;">
+          <a href="https://www.exemplo.com/sobre" itemprop="url" style="text-decoration: none; color: #4CAF50;">Sobre</a>
+        </li>
+        <li style="display: inline-block;">
+          <a href="https://www.exemplo.com/contato" itemprop="url" style="text-decoration: none; color: #4CAF50;">Contato</a>
+        </li>
+      </ul>
+    </nav>
+    <main style="margin: 0 auto; max-width: 800px; background-color: #fff; padding: 20px; border-radius: 4px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+      <article>
+        <h2 style="color: #333;">Título do Artigo</h2>
+        <p style="line-height: 1.6; color: #666;">
+          Conteúdo do artigo. Aqui pode ser inserido o conteúdo principal do site.
+        </p>
+      </article>
+    </main>
+    <footer style="text-align: center; padding: 10px; margin-top: 20px; background-color: #f1f1f1;">
+      <p style="margin: 0; color: #999;">&copy; 2025 Nome do Site</p>
+    </footer>
+  </body>
 </html>
