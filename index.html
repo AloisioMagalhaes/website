@@ -6,8 +6,7 @@
     <link rel="shortcut icon" type="image/svg+xml" href="https://placehold.co/48x48">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor Seguro</title>
-    <script blocking="render" async defer type="text/javascript" src="javascript:" crossorigin="anonymous"
-        fetchpriority="high">
+    <script blocking="render" async defer type="text/javascript" crossorigin="anonymous" fetchpriority="high">
         const nonce = btoa(Math.random().toString()).substring(0, 16);
     </script>
 </head>
@@ -20,21 +19,21 @@
         const iframe = document.getElementById('editorIframe');
         const doc = iframe.contentWindow.document;
 
-        function createEditor(type, initialContent = "") {
-            const editorDoc = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Editor de Código</title><style>body { margin: 0; display: flex; flex-direction: column; height: 100%; }#editor { flex-grow: 1; border: none; }</style></head><body><textarea id="editor" style="width: 100%; height: 100%;"></textarea><div id="preview" style="border-top: 1px solid #ccc; padding: 10px;"></div><script nonce="${nonce}">const editor = document.getElementById('editor');editor.value = \`${initialContent}\`;editor.addEventListener('input', () => {const preview = document.getElementById('preview');preview.innerHTML = editor.value;});</script></body></html>`;
+      function createEditor(type, initialContent = "") {
+    const editorDoc = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Editor de Código</title><style>body { margin: 0; display: flex; flex-direction: column; height: 100%; }#editor { flex-grow: 1; border: none; }</style></head><body><textarea id="editor" style="width: 100%; height: 100%;"></textarea><div id="preview" style="border-top: 1px solid #ccc; padding: 10px;"></div></body></html>`;
 
-            doc.open();
-            doc.write(editorDoc);
-            doc.close();
+    doc.open();
+    doc.write(editorDoc);
+    doc.close();
 
-        }
-
+    const script = doc.createElement('script');
+    script.nonce = nonce;
+    script.textContent = `const editor = document.getElementById('editor');editor.value = \`${initialContent}\`;editor.addEventListener('input', () => {const preview = document.getElementById('preview');preview.innerHTML = editor.value;});`;
+    doc.body.appendChild(script);
+}
         createEditor("html", '<h1>Olá, Mundo!</h1><p>Edite este código HTML.</p>');
-
-
-        // Example of how to create different editor types
-        // createEditor("css", "body { color: blue; }");
-        // createEditor("javascript", "console.log('Hello from JS');");
+        createEditor("css", "body { color: blue; }");
+        createEditor("javascript", "console.log('Hello from JS');");
 
 
     </script>
