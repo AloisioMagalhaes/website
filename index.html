@@ -8,120 +8,26 @@
     <script blocking="render" async defer type="text/javascript" crossorigin="anonymous" fetchpriority="high">
         const nonce = btoa(Math.random().toString()).substring(0, 16);
     </script>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-        }
-
-        #container {
-            display: flex;
-            flex-grow: 1;
-        }
-
-        .editor {
-            flex-grow: 1;
-            border: 1px solid #ccc;
-            height: 100%; /* Important for vertical split */
-        }
-
-        #output {
-            flex-grow: 1;
-            border: 1px solid #ccc;
-            height: 100%; /* Important for vertical split */
-            overflow: auto; /* Add scroll if content overflows */
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-    </style>
 </head>
 
 <body>
-    <h1>Editor de Código Seguro</h1>
-    <div id="container">
-        <div class="editor">
-            <h2>HTML</h2>
-            <textarea id="htmlEditor"></textarea>
-        </div>
-        <div class="editor">
-            <h2>CSS</h2>
-            <textarea id="cssEditor"></textarea>
-        </div>
-        <div class="editor">
-            <h2>JavaScript</h2>
-            <textarea id="jsEditor"></textarea>
-        </div>
-        <div id="output">
-            <h2>Output</h2>
-            <iframe id="preview" sandbox="allow-scripts"></iframe>
-            <div id="console"></div>
-        </div>
-    </div>
-
-    <script>
-        const htmlEditor = document.getElementById('htmlEditor');
-        const cssEditor = document.getElementById('cssEditor');
-        const jsEditor = document.getElementById('jsEditor');
-        const preview = document.getElementById('preview');
-        const consoleOutput = document.getElementById('console');
-        const previewDoc = preview.contentWindow.document;
-
-       function updatePreview() {
-    const html = htmlEditor.value;
-    const css = cssEditor.value;
-    const js = jsEditor.value;
-
-    previewDoc.open();
-    previewDoc.write(`<!DOCTYPE html><html><head><style>${css}</style></head><body>${html}</body></html>`);
-    previewDoc.close();
-
-    // Create and inject the script element
-    const script = previewDoc.createElement('script');
-    script.textContent = js;  // Set the script content
-    previewDoc.body.appendChild(script); // Add to the iframe's body
-
-}
-
-        htmlEditor.addEventListener('input', updatePreview);
-        cssEditor.addEventListener('input', updatePreview);
-        jsEditor.addEventListener('input', updatePreview);
-
-        // Custom console implementation
-        const originalConsoleLog = console.log; // Store original console.log
-        console.log = function (...args) {
-            originalConsoleLog(...args); // Call original console.log
-            const message = args.join(" "); // Format message
-            const logEntry = document.createElement('div');
-            logEntry.textContent = message;
-            consoleOutput.appendChild(logEntry);
-        };
-
-        updatePreview(); // Initial preview update
-
-
-        // Service Worker (Example - adapt as needed)
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('service-worker.js', { type: "module" }) // Register Service Worker
-                .then(registration => {
-                    console.log('Service Worker registrado com sucesso:', registration);
-                    // Example of sending a message to the service worker
-                    if (registration.active) {
-                        registration.active.postMessage({ type: 'init', nonce: nonce });
-                    }
-                })
-                .catch(error => console.error('Erro ao registrar Service Worker:', error));
-        } else {
-            console.log('Service Workers não suportados neste navegador.');
-        }
-
-
-    </script>
+   <h1>Online Editor</h1>
+ <div classeditor-container">
+    <div classeditor">
+      <h2>HTML2>
+      <textarea="editor-html" class="worker-editor_xhtml"></textarea    </div>
+ <div classeditor">
+      <h2>CSS2>
+      <textarea="editor-css" class="worker-editor_css"></textarea    </div>
+ <div classeditor">
+      <h2>Java</h2>
+     <textarea="editor-js" class="worker-editor_js"></textarea    </div>
+ </div>
+ <div classoutput-container">
+    <h2>Output2>
+    <iframe="output" sandbox="allow-scripts allow-same-origin"></iframe    <h2>Console2>
+    <div idconsole" class="worker-output_Console"></div>
+ </div>
+ <script="index.js"></script>
 </body>
-
 </html>
