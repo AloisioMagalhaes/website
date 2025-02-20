@@ -1,58 +1,43 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" type="image/svg+xml" href="https://placehold.co/48x48">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editor Seguro</title>
-    <script blocking="render" async defer type="text/javascript">
+    <script blocking="render" async defer type="text/javascript" src="javascript:" crossorigin="anonymous"
+        fetchpriority="high">
         const nonce = btoa(Math.random().toString()).substring(0, 16);
     </script>
 </head>
+
 <body>
     <h1>Editor de Código Seguro</h1>
     <iframe id="editorIframe" sandbox="allow-scripts allow-same-origin" style="width: 100%; height: 500px;"></iframe>
 
-    <!-- Definir o conteúdo HTML do editor dentro de um template -->
-    <template id="editorTemplate">
-        <!DOCTYPE html>
-        <html lang="pt-BR">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Editor de Código</title>
-            <style>
-                body { margin: 0; display: flex; flex-direction: column; height: 100%; }
-                #editor { flex-grow: 1; border: none; }
-            </style>
-        </head>
-        <body>
-            <textarea id="editor" style="width: 100%; height: 100%;"></textarea>
-            <script nonce="${nonce}">
-                // Inicializar o editor com conteúdo padrão
-                const editor = document.getElementById('editor');
-                editor.value = '<h1>Olá, Mundo!</h1><p>Edite este código HTML.</p>';
-                editor.addEventListener('input', () => {
-                    const preview = document.getElementById('preview');
-                    preview.innerHTML = editor.value;
-                });
-            </script>
-            <div id="preview" style="border-top: 1px solid #ccc; padding: 10px;"></div>
-        </body>
-        </html>
-    </template>
-
     <script>
-        // Acessar o iframe e seu documento
         const iframe = document.getElementById('editorIframe');
         const doc = iframe.contentWindow.document;
 
-        // Clonar o conteúdo do template e inseri-lo no documento do iframe
-        const template = document.getElementById('editorTemplate');
-        const clone = document.importNode(template.content, true);
-        doc.open();
-        doc.write(clone.firstChild.outerHTML);
-        doc.close();
+        function createEditor(type, initialContent = "") {
+            const editorDoc = `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Editor de Código</title><style>body { margin: 0; display: flex; flex-direction: column; height: 100%; }#editor { flex-grow: 1; border: none; }</style></head><body><textarea id="editor" style="width: 100%; height: 100%;"></textarea><div id="preview" style="border-top: 1px solid #ccc; padding: 10px;"></div><script nonce="${nonce}">const editor = document.getElementById('editor');editor.value = \`${initialContent}\`;editor.addEventListener('input', () => {const preview = document.getElementById('preview');preview.innerHTML = editor.value;});</script></body></html>`;
+
+            doc.open();
+            doc.write(editorDoc);
+            doc.close();
+
+        }
+
+        createEditor("html", '<h1>Olá, Mundo!</h1><p>Edite este código HTML.</p>');
+
+
+        // Example of how to create different editor types
+        // createEditor("css", "body { color: blue; }");
+        // createEditor("javascript", "console.log('Hello from JS');");
+
+
     </script>
 </body>
+
 </html>
