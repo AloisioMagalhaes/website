@@ -1,17 +1,15 @@
-// service-worker.js (Example)
-self.addEventListener('message', event => {
-    if (event.data.type === 'init') {
-        const nonce = event.data.nonce;
-        console.log('Service Worker inicializado com nonce:', nonce);
-        // You can use the nonce here for security if needed.
-    }
-    // ... other message handling ...
+self.addEventListener("install", (event) => {
+  event.waitUntil(
+    caches.open("code-editor-cache").then((cache) => {
+      return cache.addAll(["/", "/index.html", "/index.css", "/index.js"]);
+    })
+  );
 });
 
-// Example background task (Web Worker style)
-self.addEventListener('fetch', event => {
-    // Intercept fetch requests (example - adapt as needed)
-    // You can use this to cache resources, modify requests, etc.
+self.addEventListener("fetch", (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
+    })
+  );
 });
-
-// ... other service worker event listeners ...
