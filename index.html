@@ -9,105 +9,43 @@
     <meta itemprop="description" property="v:description" content="Esta é a descrição do site.">
     <!-- URL canônica -->
     <link itemprop="url" property="v:url" href="https://aloisiomagalhaes.github.io/website/">
-    <!-- Bloco JSON-LD para reforçar a marcação -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "WebSite",
-        "url": "https://www.exemplo.com",
-        "name": "Nome do Site",
-        "potentialAction": {
-          "@type": "SearchAction",
-          "target": "https://www.exemplo.com/busca?query={search_term_string}",
-          "query-input": "required name=search_term_string"
-        }
-      }
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>Editor de Código Seguro</h1>
+    <iframe id="editorIframe" sandbox="allow-scripts allow-same-origin" style="width: 100%; height: 500px;"></iframe>
+
+    <template id="editorTemplate">
+        <html>
+        <head>
+            <title>Editor de Código</title>
+            <style>
+                body { margin: 0; display: flex; flex-direction: column; height: 100%; }
+                #editor { flex-grow: 1; border: none; }
+            </style>
+        </head>
+        <body>
+            <textarea id="editor" style="width: 100%; height: 100%;"></textarea>
+            <script>
+                const editor = document.getElementById('editor');
+                editor.value = '<h1>Olá, Mundo!</h1><p>Edite este código HTML.</p>';
+                editor.addEventListener('input', () => {
+                    const preview = document.getElementById('preview');
+                    preview.innerHTML = editor.value;
+                });
+            </script>
+            <div id="preview" style="border-top: 1px solid #ccc; padding: 10px;"></div>
+        </body>
+        </html>
+    </template>
+
+    <script>
+        const iframe = document.getElementById('editorIframe');
+        const template = document.getElementById('editorTemplate');
+        const doc = iframe.contentWindow.document;
+        doc.open();
+        doc.write(template.innerHTML);
+        doc.close();
     </script>
-    <!-- Estilos CSS internos -->
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 20px;
-        background-color: #f9f9f9;
-      }
-      header {
-        background-color: #4CAF50;
-        padding: 20px;
-        text-align: center;
-      }
-      header h1 {
-        margin: 0;
-        color: #fff;
-      }
-      nav {
-        margin: 20px 0;
-        text-align: center;
-      }
-      nav ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-      }
-      nav ul li {
-        display: inline-block;
-        margin-right: 15px;
-      }
-      nav ul li a {
-        text-decoration: none;
-        color: #4CAF50;
-      }
-      main {
-        margin: 0 auto;
-        max-width: 800px;
-        background-color: #fff;
-        padding: 20px;
-        border-radius: 4px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
-      main h2 {
-        color: #333;
-      }
-      main p {
-        line-height: 1.6;
-        color: #666;
-      }
-      footer {
-        text-align: center;
-        padding: 10px;
-        margin-top: 20px;
-        background-color: #f1f1f1;
-      }
-      footer p {
-        margin: 0;
-        color: #999;
-      }
-    </style>
-  </head>
-  <body>
-    <header about="https://www.exemplo.com">
-      <h1 itemprop="name" property="v:name">Nome do Site</h1>
-    </header>
-    <nav aria-label="Menu principal">
-      <ul>
-        <li typeof="v:WebPage">
-          <a href="https://www.exemplo.com/sobre" itemprop="url" property="v:url">Sobre</a>
-        </li>
-        <li typeof="v:WebPage">
-          <a href="https://www.exemplo.com/contato" itemprop="url" property="v:url">Contato</a>
-        </li>
-      </ul>
-    </nav>
-    <main itemscope itemtype="https://schema.org/Article" typeof="v:Article">
-      <article>
-        <h2 itemprop="headline" property="v:headline">Título do Artigo</h2>
-        <p itemprop="articleBody" property="v:articleBody">
-          Conteúdo do artigo. Aqui pode ser inserido o conteúdo principal do site.
-        </p>
-      </article>
-    </main>
-    <footer>
-      <p>&copy; 2025 Nome do Site</p>
-    </footer>
-  </body>
+</body>
 </html>
