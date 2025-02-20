@@ -59,7 +59,7 @@
         </div>
         <div id="output">
             <h2>Output</h2>
-            <iframe id="preview" sandbox="allow-scripts allow-same-origin"></iframe>
+            <iframe id="preview" sandbox="allow-scripts"></iframe>
             <div id="console"></div>
         </div>
     </div>
@@ -72,16 +72,21 @@
         const consoleOutput = document.getElementById('console');
         const previewDoc = preview.contentWindow.document;
 
-        function updatePreview() {
-            const html = htmlEditor.value;
-            const css = cssEditor.value;
-            const js = jsEditor.value;
+       function updatePreview() {
+    const html = htmlEditor.value;
+    const css = cssEditor.value;
+    const js = jsEditor.value;
 
-            previewDoc.open();
-            previewDoc.write(`<!DOCTYPE html><html><head><style>${css}</style></head><body>${html}<script>${js}</script></body></html>`);
-            previewDoc.close();
+    previewDoc.open();
+    previewDoc.write(`<!DOCTYPE html><html><head><style>${css}</style></head><body>${html}</body></html>`);
+    previewDoc.close();
 
-        }
+    // Create and inject the script element
+    const script = previewDoc.createElement('script');
+    script.textContent = js;  // Set the script content
+    previewDoc.body.appendChild(script); // Add to the iframe's body
+
+}
 
         htmlEditor.addEventListener('input', updatePreview);
         cssEditor.addEventListener('input', updatePreview);
