@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>html</title>
+</head>
+
+<body onload="showContent()">
+  <style>
+    article {
+      /* Estilo base para o artigo */
+      padding: 1rem;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    
+    article header {
+      /* Cabeçalho do artigo */
+      margin-bottom: 0.5rem;
+    }
+    
+    article h1,
+    article h2 {
+      /* Títulos dentro do artigo */
+      margin-top: 0;
+    }
+    
+    article p {
+      /* Parágrafos dentro do artigo */
+      margin-bottom: 0.5rem;
+    }
+    
+    article a {
+      /* Links dentro do artigo */
+      color: #007bff;
+      text-decoration: none;
+      border-bottom: 1px dotted #007bff;
+    }
+    
+    article a:hover {
+      /* Links hover dentro do artigo */
+      color: #0056b3;
+    }
+    
+    article section {
+      /* Seções do artigo */
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 0.5rem;
+    }
+    
+    article footer {
+      /* Rodapé do artigo */
+      text-align: justify;
+      font-size: 0.8rem;
+      margin-top: 1rem;
+      border-top: 1px solid #ddd;
+      padding-top: 0.5rem;
+    }
+    
+    article blockquote {
+      /* Citações */
+      border-left: 5px solid #ddd;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: #f4f4f4;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    
+    .progress {
+      height: 20px;
+      background-color: #4caf50;
+      text-align: center;
+      color: white;
+      line-height: 20px;
+    }
+    
+    body {
+      color: navajowhite;
+      background-color: black;
+    }
+  </style>
+  <script>
+    function showContent() {
+  let temp = document.getElementsByTagName("template")[0];
+  let clon = temp.content.cloneNode(true);
+  document.body.appendChild(clon);
+}
+  </script>
+  <template>
+    <article itemscope itemtype="http://schema.org/ScientificArticle">
+      <!-- Title of the article -->
+      <header>
+        <h1 itemprop="headline">The Role of Microdata in Semantic Web</h1>
+        <p>
+          <span>Published on: </span>
+          <time itemprop="datePublished" datetime="2025-01-14">January 14, 2025</time>
+        </p>
+        <p>
+          <span>Authors: </span>
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">Dr. Jane Doe</span>
+            <span>, Affiliation: </span>
+            <span itemprop="affiliation" itemscope itemtype="http://schema.org/Organization">
+              <span itemprop="name">Semantic Web Research Institute</span>
+            </span>
+          </span>,
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span itemprop="name">Dr. John Smith</span>
+            <span>, Affiliation: </span>
+            <span itemprop="affiliation" itemscope itemtype="http://schema.org/Organization">
+              <span itemprop="name">Semantic Web Research Institute</span>
+            </span>
+          </span>
+        </p>
+        <p>
+          <span>Publisher: </span>
+          <span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+            <span itemprop="name">Semantic Web Journal</span>
+            <a itemprop="url" href="https://example.com/semantic-web-journal">Visit Publisher</a>
+          </span>
+        </p>
+      </header>
+      
+      <!-- Abstract -->
+      <section>
+        <h2>Abstract</h2>
+        <p itemprop="abstract">
+          This article explores the use of microdata in enhancing the semantic web. By embedding structured data
+          into HTML documents, microdata enables better data interoperability and discoverability.
+        </p>
+        <p>
+          <span>Keywords: </span>
+          <span itemprop="keywords">Semantic Web, Microdata, Schema.org, RDFS</span>
+        </p>
+      </section>
+      <!-- Corpo do artigo -->
+      <section itemprop="articleBody">
+        <h2>Introduction</h2>
+        <p>
+          The study focuses on the application of Schema.org vocabularies and their integration with RDFS to
+          create meaningful and machine-readable metadata.
+        </p>
+      </section>
+      
+      <!-- Methodology -->
+      <section>
+        <h2>Methodology</h2>
+        <p itemprop="methodology">
+          The study focuses on the application of Schema.org vocabularies and their integration with RDFS to
+          create meaningful and machine-readable metadata.
+        </p>
+      </section>
+      
+      <!-- Results -->
+      <section>
+        <h2>Results</h2>
+        <p itemprop="results">
+          The research demonstrates that using microdata significantly improves data discoverability and
+          interoperability across platforms.
+        </p>
+      </section>
+      
+      <!-- Dataset -->
+      <section>
+        <h2>Dataset</h2>
+        <p>
+          <span>Dataset used: </span>
+          <a itemprop="dataSet" href="https://example.com/dataset">Semantic Web Microdata Dataset</a>
+        </p>
+      </section>
+      
+      <!-- Funding -->
+      <section>
+        <h2>Funding</h2>
+        <p>
+          <span>Funding Source: </span>
+          <span itemprop="funding" itemscope itemtype="http://schema.org/MonetaryGrant">
+            <span itemprop="funder" itemscope itemtype="http://schema.org/Organization">
+              <span itemprop="name">National Science Foundation</span>
+            </span>
+            <span>, Amount: </span>
+            <span itemprop="amount" itemscope itemtype="http://schema.org/MonetaryAmount">
+              <span itemprop="value">50000</span>
+              <span itemprop="currency">USD</span>
+            </span>
+          </span>
+        </p>
+      </section>
+      
+      <!-- Citations -->
+      <section>
+        <h2>Citations</h2>
+        <p>
+          This article references the following work:
+        </p>
+        <blockquote itemscope itemtype="http://schema.org/ScholarlyArticle">
+          <p itemprop="headline">
+            "Microdata and the Semantic Web: A Practical Guide"
+          </p>
+          <p>
+            <span>Author: </span>
+            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+              <span itemprop="name">Dr. Alice Johnson</span>
+            </span>
+          </p>
+          <p>
+            <span>Published on: </span>
+            <time itemprop="datePublished" datetime="2023-05-10">May 10, 2023</time>
+          </p>
+          <p>
+            <span>Publisher: </span>
+            <span itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+              <span itemprop="name">Web Science Journal</span>
+            </span>
+          </p>
+          <p>
+            <span>URL: </span>
+            <a itemprop="url" href="https://example.com/microdata-guide">https://example.com/microdata-guide</a>
+          </p>
+        </blockquote>
+      </section>
+      
+      <!-- Keywords -->
+      <footer>
+        <p>
+          <span>About: </span>
+          <span itemprop="about">Semantic Web and Microdata</span>
+        </p>
+        <p>
+          <span>License: </span>
+          <a itemprop="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0</a>
+        </p>
+        <p>
+          <span>Page Start: </span>
+          <span itemprop="pageStart">1</span>
+        </p>
+        <p>
+          <span>Page End: </span>
+          <span itemprop="pageEnd">10</span>
+        </p>
+        <p>
+          <span>Pagination: </span>
+          <span itemprop="pagination">1-10</span>
+        </p>
+      </footer>
+    </article>
+  </template>
+</body>
+
+</html>
