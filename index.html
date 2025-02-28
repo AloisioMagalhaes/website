@@ -1,33 +1,43 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editor Seguro</title>
-    <script blocking="render" async defer type="text/javascript" crossorigin="anonymous" fetchpriority="high">
-        const nonce = btoa(Math.random().toString()).substring(0, 16);
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>vCard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .card {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+        }
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
-
 <body>
-   <h1>Online Editor</h1>
- <div classeditor-container">
-    <div classeditor">
-      <h2>HTML2>
-      <textarea="editor-html" class="worker-editor_xhtml"></textarea    </div>
- <div classeditor">
-      <h2>CSS2>
-      <textarea="editor-css" class="worker-editor_css"></textarea    </div>
- <div classeditor">
-      <h2>Java</h2>
-     <textarea="editor-js" class="worker-editor_js"></textarea    </div>
- </div>
- <div classoutput-container">
-    <h2>Output2>
-    <iframe="output" sandbox="allow-scripts allow-same-origin"></iframe    <h2>Console2>
-    <div idconsole" class="worker-output_Console"></div>
- </div>
- <script="index.js"></script>
+    <div class="card">
+        <img src="https://files.oaiusercontent.com/file-1FdWc9stJbe1LSwbtRSLRT?se=2025-02-28T14%3A51%3A33Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D5bf2ce6b-64ae-4466-9c13-93a67195be19.webp&sig=0DRF4QY67lguq97jz8M3HEcx1VSFgVJvRnExY5iE3hk%3D" alt="Profile Picture">
+        <h2>John Doe</h2>
+        <p>Web Developer | Designer | Freelancer</p>
+        <p>Email: johndoe@example.com</p>
+        <p>Phone: +123 456 7890</p>
+        <a href="#" class="secondary">View Portfolio</a>
+    </div>
 </body>
 </html>
